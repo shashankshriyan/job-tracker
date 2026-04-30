@@ -30,4 +30,18 @@ export const applicationService = {
     })
     return res?.json()
   },
+
+  async getById(id: string) {
+  const res = await apiFetch(`/api/applications/${id}`)
+  return res?.json()
+},
+
+async update(id: string, data: ApplicationInput) {
+  const res = await apiFetch('/api/applications', {
+    method: 'PATCH',
+    body: JSON.stringify({ id, ...data }),
+  })
+  return res?.json()
+},
 }
+

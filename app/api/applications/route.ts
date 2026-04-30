@@ -73,3 +73,4 @@ export async function DELETE(req: NextRequest) {
 
   return successResponse(null, 'Application deleted')
 }
+
