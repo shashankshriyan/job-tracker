@@ -45,7 +45,7 @@ export default function ApplicationsPage() {
 
     return (
         <div className="max-w-5xl mx-auto px-6 py-8">
-            {/* Header */}
+  
             <div className="flex items-center justify-between mb-8">
                 <div>
                     <h1 className="text-2xl font-semibold text-gray-900">Applications</h1>
@@ -62,7 +62,7 @@ export default function ApplicationsPage() {
                 </button>
             </div>
 
-            {/* Filters */}
+      
             <div className="flex gap-2 mb-6 flex-wrap">
                 {filters.map((f) => (
                     <button
@@ -78,7 +78,7 @@ export default function ApplicationsPage() {
                 ))}
             </div>
 
-            {/* List */}
+        
             {loading ? (
                 <div className="py-16 text-center text-sm text-gray-400">Loading...</div>
             ) : filtered.length === 0 ? (
@@ -93,7 +93,7 @@ export default function ApplicationsPage() {
                             className="bg-white rounded-2xl border border-gray-100 shadow-sm px-6 py-4"
                         >
                             <div className="flex items-start justify-between">
-                                {/* Left */}
+                              
                                 <div className="flex-1 min-w-0">
                                     <div className="flex items-center gap-2 flex-wrap mb-1">
                                         <p className="text-sm font-semibold text-gray-900">{app.company}</p>
@@ -129,9 +129,9 @@ export default function ApplicationsPage() {
                                     )}
                                 </div>
 
-                                {/* Right */}
+                             
                                 <div className="flex items-center gap-2 ml-4 shrink-0">
-                                    {/* Status update */}
+                                 
                                     <select
                                         value={app.status}
                                         onChange={(e) => handleStatusChange(app.id, e.target.value)}

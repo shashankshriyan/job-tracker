@@ -23,7 +23,8 @@ export async function POST(req: NextRequest) {
 
     const token = signToken(user.id, email)
     return successResponse({ token, email }, 'Registered successfully', 201)
-  } catch {
+  } catch(error) {
+     console.error('Register error:', error)
     return errorResponse('Registration failed', 500)
   }
 }

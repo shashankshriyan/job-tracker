@@ -38,7 +38,7 @@ export default function DashboardPage() {
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-8">
-      {/* Header */}
+    
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
@@ -55,7 +55,7 @@ export default function DashboardPage() {
         </button>
       </div>
 
-      {/* Stats */}
+      
       <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
         {statCards.map((stat) => (
           <div key={stat.label} className={`${stat.color} rounded-2xl p-4 text-center`}>
@@ -65,7 +65,7 @@ export default function DashboardPage() {
         ))}
       </div>
 
-      {/* Recent Applications */}
+    
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm">
         <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
           <h2 className="text-sm font-semibold text-gray-900">Recent Applications</h2>

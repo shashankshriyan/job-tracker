@@ -12,7 +12,7 @@ export default function Navbar() {
 
   return (
     <nav className="bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between">
-      {/* Logo */}
+  
       <div
         onClick={() => router.push('/dashboard')}
         className="flex items-center gap-2 cursor-pointer"
@@ -25,7 +25,7 @@ export default function Navbar() {
         <span className="text-base font-semibold text-gray-900">Job Tracker</span>
       </div>
 
-      {/* Logout */}
+   
       <button
         onClick={logout}
         className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-red-600 transition-colors px-3 py-2 rounded-xl hover:bg-red-50"
