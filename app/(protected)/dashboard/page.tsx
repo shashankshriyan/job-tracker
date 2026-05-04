@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { applicationService } from '@/lib/services/applicationService'
 import { Application } from '@/types'
+import { ShimmerDashboardList, ShimmerStat } from '@/components/ui/shimmer'
 
 export default function DashboardPage() {
   const [applications, setApplications] = useState<Application[]>([])
@@ -38,7 +39,7 @@ export default function DashboardPage() {
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-8">
-    
+
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
@@ -55,17 +56,23 @@ export default function DashboardPage() {
         </button>
       </div>
 
-      
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
-        {statCards.map((stat) => (
-          <div key={stat.label} className={`${stat.color} rounded-2xl p-4 text-center`}>
-            <p className="text-3xl font-bold">{stat.value}</p>
-            <p className="text-xs font-medium mt-1">{stat.label}</p>
-          </div>
-        ))}
-      </div>
 
-    
+      {loading ? (
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
+          {[...Array(5)].map((_, i) => <ShimmerStat key={i} />)}
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
+          {statCards.map((stat) => (
+            <div key={stat.label} className={`${stat.color} rounded-2xl p-4 text-center`}>
+              <p className="text-3xl font-bold">{stat.value}</p>
+              <p className="text-xs font-medium mt-1">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      )}
+
+
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm">
         <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
           <h2 className="text-sm font-semibold text-gray-900">Recent Applications</h2>
@@ -78,7 +85,7 @@ export default function DashboardPage() {
         </div>
 
         {loading ? (
-          <div className="py-16 text-center text-sm text-gray-400">Loading...</div>
+          <ShimmerDashboardList />
         ) : applications.length === 0 ? (
           <div className="py-16 text-center">
             <p className="text-sm text-gray-400 mb-4">No applications yet!</p>
@@ -98,12 +105,11 @@ export default function DashboardPage() {
                   <p className="text-xs text-gray-500">{app.role}</p>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className={`text-xs px-2 py-1 rounded-full font-medium ${
-                    app.status === 'applied' ? 'bg-yellow-50 text-yellow-700' :
-                    app.status === 'interview' ? 'bg-purple-50 text-purple-700' :
-                    app.status === 'offer' ? 'bg-green-50 text-green-700' :
-                    'bg-red-50 text-red-700'
-                  }`}>
+                  <span className={`text-xs px-2 py-1 rounded-full font-medium ${app.status === 'applied' ? 'bg-yellow-50 text-yellow-700' :
+                      app.status === 'interview' ? 'bg-purple-50 text-purple-700' :
+                        app.status === 'offer' ? 'bg-green-50 text-green-700' :
+                          'bg-red-50 text-red-700'
+                    }`}>
                     {app.status}
                   </span>
                   {app.jobUrl && (

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { applicationService } from '@/lib/services/applicationService'
 import { Application, ApplicationStatus } from '@/types'
+import { ShimmerCard } from '@/components/ui/shimmer'
 
 export default function ApplicationsPage() {
     const [applications, setApplications] = useState<Application[]>([])
@@ -45,7 +46,7 @@ export default function ApplicationsPage() {
 
     return (
         <div className="max-w-5xl mx-auto px-6 py-8">
-  
+
             <div className="flex items-center justify-between mb-8">
                 <div>
                     <h1 className="text-2xl font-semibold text-gray-900">Applications</h1>
@@ -62,15 +63,15 @@ export default function ApplicationsPage() {
                 </button>
             </div>
 
-      
+
             <div className="flex gap-2 mb-6 flex-wrap">
                 {filters.map((f) => (
                     <button
                         key={f.value}
                         onClick={() => setFilter(f.value)}
                         className={`px-4 py-1.5 text-sm rounded-xl font-medium transition-all ${filter === f.value
-                                ? 'bg-gray-900 text-white'
-                                : 'bg-white text-gray-500 border border-gray-200 hover:bg-gray-50'
+                            ? 'bg-gray-900 text-white'
+                            : 'bg-white text-gray-500 border border-gray-200 hover:bg-gray-50'
                             }`}
                     >
                         {f.label}
@@ -78,9 +79,11 @@ export default function ApplicationsPage() {
                 ))}
             </div>
 
-        
+
             {loading ? (
-                <div className="py-16 text-center text-sm text-gray-400">Loading...</div>
+                <div className="space-y-3">
+                    {[...Array(3)].map((_, i) => <ShimmerCard key={i} />)}
+                </div>
             ) : filtered.length === 0 ? (
                 <div className="py-16 text-center">
                     <p className="text-sm text-gray-400">No applications found!</p>
@@ -93,14 +96,14 @@ export default function ApplicationsPage() {
                             className="bg-white rounded-2xl border border-gray-100 shadow-sm px-6 py-4"
                         >
                             <div className="flex items-start justify-between">
-                              
+
                                 <div className="flex-1 min-w-0">
                                     <div className="flex items-center gap-2 flex-wrap mb-1">
                                         <p className="text-sm font-semibold text-gray-900">{app.company}</p>
                                         <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${app.status === 'applied' ? 'bg-yellow-50 text-yellow-700' :
-                                                app.status === 'interview' ? 'bg-purple-50 text-purple-700' :
-                                                    app.status === 'offer' ? 'bg-green-50 text-green-700' :
-                                                        'bg-red-50 text-red-700'
+                                            app.status === 'interview' ? 'bg-purple-50 text-purple-700' :
+                                                app.status === 'offer' ? 'bg-green-50 text-green-700' :
+                                                    'bg-red-50 text-red-700'
                                             }`}>
                                             {app.status}
                                         </span>
@@ -129,9 +132,9 @@ export default function ApplicationsPage() {
                                     )}
                                 </div>
 
-                             
+
                                 <div className="flex items-center gap-2 ml-4 shrink-0">
-                                 
+
                                     <select
                                         value={app.status}
                                         onChange={(e) => handleStatusChange(app.id, e.target.value)}
