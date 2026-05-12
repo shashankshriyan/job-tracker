@@ -29,6 +29,8 @@ export default function LoginPage() {
     router.push('/dashboard')
   }
 
+
+
   return (
     <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-slate-100 px-4">
       <div className="w-full max-w-sm">

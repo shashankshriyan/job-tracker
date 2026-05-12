@@ -22,6 +22,8 @@ export async function GET(req: NextRequest) {
   return successResponse(applications, 'Applications fetched')
 }
 
+
+
 export async function POST(req: NextRequest) {
   const userId = getUserId(req)
   if (!userId) return errorResponse('Unauthorized', 401)
@@ -46,6 +48,8 @@ export async function POST(req: NextRequest) {
 
   return successResponse(application, 'Application created', 201)
 }
+
+
 
 export async function PATCH(req: NextRequest) {
   const userId = getUserId(req)

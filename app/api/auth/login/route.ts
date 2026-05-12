@@ -17,5 +17,6 @@ export async function POST(req: NextRequest) {
     return successResponse({ token, email }, 'Login successful')
   } catch {
     return errorResponse('Login failed', 500)
+    
   }
 }
